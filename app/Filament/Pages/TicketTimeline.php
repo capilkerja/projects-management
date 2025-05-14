@@ -8,9 +8,12 @@ use Auth;
 use Carbon\Carbon;
 use Filament\Pages\Page;
 use Illuminate\Support\Collection;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 
 class TicketTimeline extends Page
 {
+    use HasPageShield;
+
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
 
     protected static ?string $navigationLabel = 'Timeline';
@@ -224,7 +227,7 @@ class TicketTimeline extends Page
             } elseif ($remainingDays === 0) {
                 $remainingDaysText = 'Due today';
             } else {
-                $remainingDaysText = abs($remainingDays).' days overdue';
+                $remainingDaysText = abs($remainingDays) . ' days overdue';
             }
 
             $tasks[] = [

@@ -10,9 +10,12 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 
 class EpicsOverview extends Page
 {
+    use HasPageShield;
+
     protected static ?string $navigationIcon = 'heroicon-o-flag';
 
     protected static string $view = 'filament.pages.epics-overview';

@@ -10,9 +10,12 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 
 class ProjectBoard extends Page
 {
+    use HasPageShield;
+
     protected static ?string $navigationIcon = 'heroicon-o-view-columns';
 
     protected static string $view = 'filament.pages.project-board';
@@ -174,8 +177,8 @@ class ProjectBoard extends Page
             Action::make('new_ticket')
                 ->label('New Ticket')
                 ->icon('heroicon-m-plus')
-                ->visible(fn () => $this->selectedProject !== null && auth()->user()->hasRole(['super_admin']))
-                ->url(fn (): string => TicketResource::getUrl('create', [
+                ->visible(fn() => $this->selectedProject !== null && auth()->user()->hasRole(['super_admin']))
+                ->url(fn(): string => TicketResource::getUrl('create', [
                     'project_id' => $this->selectedProject?->id,
                     'ticket_status_id' => $this->selectedProject?->ticketStatuses->first()?->id,
                 ])),
